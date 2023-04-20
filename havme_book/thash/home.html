@@ -1,0 +1,74 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;700&family=Playfair+Display:wght@400;800&family=Roboto:wght@100;300;400&display=swap"
+        rel="stylesheet">
+    <link href="{% static 'bio/css/home.css' %}" rel="stylesheet">
+    <link href="{% static 'bio/images/maxim.jpg' %}" rel="stylesheet">
+    <title>{{ title }}</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="header__logo">HAVME</h1>
+        </div>
+    </header>
+
+    <section class="about">
+        <div class="container">
+            <div class="about__text-container">
+                <div class="about__text">
+                    <h2 class="about__text-content typewriter-animation">
+                        Это конструктор твоей визитной карточки. Расскажи о себе всем!
+                    </h2>
+                </div>
+            </div>
+            <div class="about__buttons">
+                <!-- <div class="row justify-content-md-center">
+                    <div class="col-lg-6 col-xs-12">
+                        <button class="about__buttons-login">
+                            Log In
+                        </button>
+                    </div>
+                    <div class="col-lg-6 col-xs-12">
+                        <button class="about__buttons-signup">
+                            Sign Up
+                        </button>
+                    </div>
+                </div> -->
+                
+                <a class="btn btn-outline btn-lg m-2 btn__signup" href="{% url 'register' %}" target="_blank"
+                    role="button">Sign Up</a>
+
+
+                <a class="btn btn-outline btn-lg m-2 btn__login" href="" role="button"
+                    rel="nofollow" target="_blank">Log In</a>
+
+
+                <a class="btn btn-outline btn-lg m-2 btn__signup" href="{{i.get_absolute_url}}" target="_blank"
+                    role="button">My page</a>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/jquery.bubble.text.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

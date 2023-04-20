@@ -1,0 +1,80 @@
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
+}
+
+/* 
+font-family: 'Montserrat', sans-serif;
+
+font-family: 'Playfair Display', serif;
+
+font-family: 'Roboto', sans-serif; */
+
+.about, 
+.header{
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+.about__text{
+    max-width: 50rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    /* overflow: hidden;
+        border-right: .30em solid orange;
+        border-radius: 4px;
+        white-space: nowrap;
+        animation: 
+          typing 1s steps(20, end) forwards,
+          blinking 1.2s infinite;
+        font-size: 1.6rem;
+        width: 0; */
+}
+
+/* .about__text-container{
+    display: inline-block;
+} */
+
+/* .about__text-content{
+    width: 18.5em;
+    border-right: 2px solid orange;
+    overflow: hidden;
+    /* white-space: nowrap; */
+    /* position: relative; */
+
+/* }
+.typewriter-animation{
+    animation: typewriter 4s steps(20) 1s 1 normal both, textCursor 500ms steps(40) infinite normal;
+}
+
+@keyframes typewriter {
+    from{
+        width: 0;
+    } 
+    to{
+        width: 18.5em;
+    }
+}
+
+  @keyframes textCursor {
+    from{
+        border-right-color:#fff ;
+    }
+    to{
+        border-right-color: transparent;
+    }
+  }  */
+
+
+
+.about__text-content{
+    font-family: 'Montserrat', sans-serif;
+}
+.btn__signup,
+.btn__login{
+    border: 1px solid #000;
+    font-family: 'Montserrat', sans-serif;
+
+}
