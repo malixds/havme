@@ -45,6 +45,7 @@ svg,img { max-width: 100%; height: auto; }
 	line-height: 1.2rem;
 
 }
+
 .search-photo{
 	width: 80px;
 	height: 80px;
@@ -58,7 +59,14 @@ svg,img { max-width: 100%; height: auto; }
 }
 .ds-search-item{
 	text-align: left;
-	border-bottom: 1px solid #000;
+	display: table;	
+}
+.search__result-item{
+	display: table-cell;
+	vertical-align: middle;
+}
+.search__result-link{
+	display: table-cell;
 }
 .btn-search{
 	background-color: #fff;
@@ -78,7 +86,7 @@ svg,img { max-width: 100%; height: auto; }
 /*-----------------------------------------------------------------
   2. >>> Banner Style
 ----------------------------------------------------------------*/
-.ds-banner section{ padding-left: 70px; padding-right: 100px; }
+.ds-banner section{ padding-right: 100px; }
 .ds-banner section h1 span{ display: block; text-transform: uppercase; letter-spacing: 1px;  font-weight: 400; font-size: 12px; padding-bottom: 30px; }
 .ds-banner section h1{ font-weight: 600; font-size: 48px; line-height: 60px; color: #000; }
 .ds-banner-id-edit{
@@ -92,7 +100,6 @@ svg,img { max-width: 100%; height: auto; }
 	margin-top: 3px;
 }
 .ds-banner-name{
-	margin-bottom: 1rem;
 }
 .ds-info-item-text{
 	font-size: 1.2rem;

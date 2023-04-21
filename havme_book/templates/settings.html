@@ -57,13 +57,13 @@
                             </div>
 
                             <div class="col-span-2">
-                                <label for="about">Bio</label>
+                                <label form="about">Bio</label>
                                 <textarea id="bio" name="bio" rows="3"
                                     class="shadow-none bg-gray-100">{{user_profile.bio}}</textarea>
                             </div>
 
                             <div class="col-span-2">
-                                <label for=""> First Name </label>
+                                <label form=""> First Name </label>
                                 <input type="text" name="first_name" value="{{user_profile.first_name}}"
                                     class="shadow-none bg-gray-100">
                             </div>
@@ -85,6 +85,13 @@
                                 <input type="text" name="city" value="{{user_profile.city}}"
                                     class="shadow-none bg-gray-100">
                             </div>
+
+                            <div class="col-span-2">
+                                <label for="">VK_ID</label>
+                                <input type="text" name="telegram" value="{{user_profile.telegram}} " placeholder="id"
+                                    class="shadow-none bg-gray-100">
+                            </div>
+
 
                         </div>
 

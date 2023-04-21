@@ -1285,7 +1285,7 @@ strong {
 @media (min-width: 1024px) {
   .container {
     max-width: 900px !important;
-    padding-top: 45px;
+    padding-top: 2px;
   }
 }
 

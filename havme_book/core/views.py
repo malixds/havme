@@ -5,8 +5,14 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from .models import Profile
 from django.contrib.auth.decorators import login_required
+from django.views.generic.list import ListView
+from django.core.paginator import Paginator
 
 # Create your views here.
+
+
+def start(request):
+    return redirect('signin')
 
 @login_required(login_url='signin')
 def profile(request, pk):
@@ -44,15 +50,25 @@ def profile(request, pk):
 
 @login_required(login_url='signin')
 def search(request):
+
+
     user_object = User.objects.get(username=request.user.username)
     user_profile = Profile.objects.get(user=user_object)
 
+    contact_list = Profile.objects.all()
+    paginator = Paginator(contact_list, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    username_profile_list = []
+
     if request.method == "POST":
+
+
         username = request.POST['username']
         username_object = User.objects.filter(username__icontains=username)
 
         username_profile = []
-        username_profile_list = []
+
 
         for users in username_object:
             username_profile.append(users.id)
@@ -62,8 +78,17 @@ def search(request):
             username_profile_list.append(profile_lists)
 
         username_profile_list = list(chain(*username_profile_list))
+        
+    return render(request, 'search.html', { 'page_obj': page_obj, 'user_profile': user_profile, 'username_profile_list': username_profile_list})
 
-    return render(request, 'search.html', {'user_profile': user_profile, 'username_profile_list': username_profile_list})
+
+# def search(request):
+
+#         contact_list = Profile.objects.all()
+#     paginator = Paginator(contact_list, 3)
+#     page_number = request.GET.get('page')
+#     page_obj = paginator.get_page(page_number)
+
 
 def settings(request):
     user_profile = Profile.objects.get(user=request.user)
@@ -77,6 +102,7 @@ def settings(request):
             second_name = request.POST['second_name']
             age = request.POST['age']
             city = request.POST['city']
+            telegram = request.POST['telegram']       
 
             user_profile.profileimg = image
             user_profile.bio = bio
@@ -84,6 +110,7 @@ def settings(request):
             user_profile.first_name = first_name
             user_profile.second_name = second_name
             user_profile.age = age
+            user_profile.telegram = telegram
             user_profile.save()
 
         if request.FILES.get('image') != None:
@@ -93,6 +120,7 @@ def settings(request):
             second_name = request.POST['second_name']
             age = request.POST['age']
             city = request.POST['city']
+            telegram = request.POST['telegram']   
 
             user_profile.profileimg = image
             user_profile.bio = bio
@@ -100,6 +128,7 @@ def settings(request):
             user_profile.first_name = first_name
             user_profile.second_name = second_name
             user_profile.age = age
+            user_profile.telegram = telegram
             user_profile.save()
         
         return redirect('settings')
@@ -120,6 +149,12 @@ def signup(request):
                 return redirect('signup')                   # перенаправляем пользователя на signup
             elif User.objects.filter(username=username).exists():   # проверка на суещствование пользователя с таким же никнеймом
                 messages.info(request, 'Username Taken')
+                return redirect('signup')
+            elif 3 > len(User.objects.filter(username=username)) and len(User.objects.filter(username=username)) > 14:
+                messages.info(request, 'Username should be more 3 and less 14 ')
+                return redirect('signup')
+            elif len(User.objects.filter(password=password)) <= 6:
+                messages.info(request, 'Your password should consist more 6 symbols')
                 return redirect('signup')
             else:   # если все ок, то:
                 user = User.objects.create_user(username=username, email=email, password=password)  # создаем полльзователя с определенными данными

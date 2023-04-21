@@ -10,4 +10,5 @@ urlpatterns = [
     path('logout', views.logout, name='logout'),
     path('@<str:pk>', views.profile, name='profile'),
     path('search', views.search, name='search'),
+    path('', views.start, name=''),
 ]

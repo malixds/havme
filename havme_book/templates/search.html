@@ -40,72 +40,83 @@
 
 
     <!-- header -->
-    <nav class="navbar navbar-expand-lg navbar-white bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container pt-0">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
                 aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <b><h1 class="navbar-brand" href="#">HAVME</h1></b>
+            <a class="nav-link active" aria-current="page" href="@{{user.username}}"><b>
+                    <h1 class="navbar-brand" href="#">HAVME</h1>
+                </b></a>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="@{{user.username}}">Home</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/settings">Settings</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/logout">Log Out</a>
+                        <a class="nav-link text-danger" href="/logout">Log Out</a>
                     </li>
                 </ul>
                 <form action="/search" method="POST" class="d-flex">
                     {% csrf_token %}
                     <input name="username" class="form-control me-2" type="text" placeholder="Search for username..">
-                    <button class="btn btn-outline-danger" type="submit">Search</button>
+                    <button class="btn btn-light btn-outline-danger btn-search" type="submit">Search</button>
                 </form>
             </div>
         </div>
     </nav>
     <!-- header -->
 
-    {% for users in username_profile_list %}
+
     <section class="ds-banner">
-        <div class="container">
-            <div class="row pd-2">
-                <div class="seatch-item display-flex">
-                    <div class="search-result-item-body">
-                        <div class="row ds-search-item pb-2">
-                            <div class="col-2">
-                                <a href="@{{users.user}}">
-                                    <img class="search-photo" src="{{users.profileimg.url}}">
-                                </a>
-                            </div>
-                            <div class="col-10 ds-search-item-info ps-0">
-                                <!-- feathericon-edit  -->
-                                <p class="ds-banner-name">
-                                    <!-- Пользователь вводит свой никнейм -> такой никнейм ищется в таблице -> на его основе выводятся данные -->
-                                    I’m <b>{{users.first_name}} </b>
-                                </p>
-                                <ul class="ds-info">
-                                    <li class="ds-info-item">
-                                        <p class="search-result-item-heading">
-                                            <a href="@{{users.user}}"><b>@{{users.user}}</b> </a>
-                                        </p>
-                                    </li>
-                                    <li class="ds-info-item">
-                                        <p class="info">{{users.city}}</p>
-                                    </li>
-                                </ul>
-                            </div>
+        <div class="container pt-2">
+            <div class="row row-cols-2">
+                {% for users in username_profile_list %}
+                <div class="col-12 col-sm-6 search-result-item-body pt-2" style="">
+                    <div class="row ds-search-item pb-2" style="display: table; border-bottom: 1px solid #fff;">
+                        <div class="col-3 search__result-item" style="display: table-cell; vertical-align: middle;">
+                            <a class="search__result-link" href="@{{users.user}}">
+                                <img class="search-photo" src="{{users.profileimg.url}}">
+                            </a>
+                        </div>
+                        <div class="col-9 ds-search-item-info ps-0">
+                            <!-- feathericon-edit  -->
+                            <p class="ds-banner-name">
+                                <!-- Пользователь вводит свой никнейм -> такой никнейм ищется в таблице -> на его основе выводятся данные -->
+                                I’m <b>{{users.first_name}} </b>
+                            </p>
+                            <ul class="ds-info">
+                                <li class="ds-info-item">
+                                    <p class="search-result-item-heading">
+                                        <a href="@{{users.user}}"><b>@{{users.user}}</b> </a>
+                                    </p>
+                                </li>
+                                <li class="ds-info-item">
+                                    <p class="info">{{users.city}}</p>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
     </section>
-    {% endfor %}
 
+<!-- 
+    <nav>
+        <form action="/search" method="POST" class="d-flex">
+            {% csrf_token %}
+            <ul>
+                <li>
+                    {% for p in page_obj.paginator.page_range %}
+                    <a href="/search?page={{ p }}">{{ p }} asdasdasd</a>
+        </form>
+        </li>
+        {% endfor %}
+        </ul>
+    </nav> -->
 
 
 

@@ -38,23 +38,20 @@
 
 <body class="background-color-white">
 
-  <nav class="navbar navbar-expand-lg navbar-white bg-white">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container pt-0">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
         aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <b><h1 class="navbar-brand" href="#">HAVME</h1></b>
+      <a class="nav-link active" aria-current="page" href="@{{user.username}}"><b><h1 class="navbar-brand" href="#">HAVME</h1></b></a>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="@{{user.username}}">Home</a>
-          </li>
           <li class="nav-item">
             <a class="nav-link" href="/settings">Settings</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/logout">Log Out</a>
+            <a class="nav-link text-danger" href="/logout">Log Out</a>
           </li>
         </ul>
         <form action="/search" method="POST" class="d-flex">
@@ -66,44 +63,6 @@
     </div>
   </nav>
 
-  <!-- header -->
-  <!-- <header>
-    <div class="header_inner">
-      <div class="left-side">
-        <form action="/search" method="POST">
-          {% csrf_token %}
-          <div class="header_search">
-            <input type="text" name ="username" placeholder="Search for username..">
-            <div class="icon-search">
-              <button type="submit"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></button>
-              </svg>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="right-side lg:pr-4">
-        <a href="@{{user.username}}"
-          class="bg-pink-500 flex font-bold hidden hover:bg-pink-600 hover:text-white inline-block items-center lg:block max-h-10 mr-4 px-4 py-2 rounded shado text-white">
-          <ion-icon name="add-circle" class="-mb-1 mr-1 opacity-90 text-xl uilus-circle"></ion-icon> Home Page
-        </a>
-        <a href="#">
-          <img src="/static/images/resources/menu.png" class="header-avatar" alt="">
-      </a>
-      <div uk-drop="mode: click;offset:9" class="header_dropdown profile_dropdown border-t">
-          <ul>
-              <li><a href="/settings"> Account setting </a> </li>
-              <li><a href="/logout"> Log Out</a></li>
-          </ul>
-      </div>
-      </div>
-    </div>
-  </header> -->
-
-
-  <!-- header -->
-  <!-- banner -->
   <div class="ds-banner">
     <div class="container">
       <div class="row ds-banner-info-row">
@@ -131,6 +90,11 @@
                 <li class="ds-info-item">
                   <p class="ds-info-item-text">City: {{user_profile.city}}</p>
                 </li>
+                {% if user_profile.telegram %}
+                <li class="ds-info-item">
+                  <a class="ds-info-item-text" href="https://vk.com/{{user_profile.telegram}}">Me in Vk</a>
+                </li>
+                {% endif %}
               </ul>
             </section>
         </div>
@@ -155,9 +119,9 @@
     <div class="container">
       <section>
         <span>Stay in touch</span>
-        <h4>Ready to talk?</h4>
-        <p>Feel free to contact us</p>
-        <a href="mailto:test@test.com" class="ds-button">Lets Talk</a>
+        {% if user_profile.telegram %}
+        <a href="https://vk.com/{{user_profile.telegram}}" class="ds-button">VK</a>
+        {% endif %}
       </section>
 
       <span class="ds-copyright">© 2022 All rights reserved. Free minimal bootstrap template by <a
